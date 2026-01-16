@@ -18,3 +18,20 @@ To view the installed versions of Ruby, Rails, and RubyGems on Windows:
 3. Save the file
 4. Run the file using the command:
    ruby day1.rb
+
+# Rails
+Rails is a web framwwork of ruby, whic follows MVC archietecture.
+M -> Models
+V -> Views
+C -> Controller
+i will talk about these in detail later!
+
+## Creating a rails Aplliaction
+1. rails new my_app -d postgresql 
+   (witout specifying database name, rails use sqlite by default)
+2. cd appication_name
+3. rails db:create
+4. rails server 
+now the rails appication my_app is live now!
+
+# Day 2 of rubyonrails-dayspringtechnology-internship
