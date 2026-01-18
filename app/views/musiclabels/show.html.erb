@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @musiclabel %>
+
+<div>
+  <%= link_to "Edit this musiclabel", edit_musiclabel_path(@musiclabel) %> |
+  <%= link_to "Back to musiclabels", musiclabels_path %>
+
+  <%= button_to "Destroy this musiclabel", @musiclabel, method: :delete %>
+</div>
