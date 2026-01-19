@@ -1,0 +1,24 @@
+-- Types of var
+-- diff methods to inherit the instance and class variables
+local - normal naming
+global - $
+constnt 
+instance
+class
+
+-- Methods
+instance method
+class method
+
+-- datatypes in ruby
+integer
+string -> mutable str
+boolean
+nil -> returns a value
+symbol -> immutable str 
+symbol as a key, the lookup is faster
+
+inbuilt methods
+class
+object_id
+
