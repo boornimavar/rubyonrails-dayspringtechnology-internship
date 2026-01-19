@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Musiclabels" %>
+
+<h1>Musiclabels</h1>
+
+<div id="musiclabels">
+  <% @musiclabels.each do |musiclabel| %>
+    <%= render musiclabel %>
+    <p>
+      <%= link_to "Show this musiclabel", musiclabel %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New musiclabel", new_musiclabel_path %>

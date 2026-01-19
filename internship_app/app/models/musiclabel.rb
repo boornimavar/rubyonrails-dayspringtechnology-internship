@@ -1,0 +1,2 @@
+class Musiclabel < ApplicationRecord
+end

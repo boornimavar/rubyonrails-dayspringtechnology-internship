@@ -1,0 +1,203 @@
+/*
+  Global application styles
+  Applies to Customers and Products views
+*/
+
+/* ---------- RESET / BASE ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background-color: #f4f6f8;
+  color: #1f2937;
+  margin: 0;
+  padding: 24px;
+}
+
+/* ---------- HEADINGS ---------- */
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+h2 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+/* ---------- LAYOUT WRAPPER ---------- */
+
+.container,
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- TABLES (INDEX PAGES) ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+thead {
+  background-color: #f9fafb;
+}
+
+th {
+  padding: 14px;
+  font-size: 14px;
+  text-align: left;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+td {
+  padding: 14px;
+  font-size: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+tr:hover {
+  background-color: #f9fafb;
+}
+
+/* ---------- PRICE / IMPORTANT DATA ---------- */
+
+td strong,
+.price {
+  font-weight: 700;
+  color: #111827;
+}
+
+/* ---------- LINKS & ACTIONS ---------- */
+
+a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a[data-method="delete"] {
+  color: #dc2626;
+  margin-left: 8px;
+}
+
+/* ---------- BUTTON-LIKE LINKS ---------- */
+
+a.button,
+input[type="submit"] {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 18px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+a.button:hover,
+input[type="submit"]:hover {
+  background-color: #1e40af;
+}
+
+/* ---------- FORMS (NEW / EDIT) ---------- */
+
+form {
+  margin-top: 20px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #374151;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+/* ---------- FLASH MESSAGES ---------- */
+
+.notice {
+  background-color: #ecfeff;
+  color: #0369a1;
+  padding: 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.alert {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.inactive-row {
+  background-color: #fee2e2;
+  color: #7f1d1d;
+}
+
+/* Row highlight for inactive customers */
+.inactive-row {
+  background-color: #fee2e2;
+}
+
+/* Status badge */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Active status */
+.status-badge.active {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+/* Inactive status */
+.status-badge.inactive {
+  background-color: #fee2e2;
+  color: #7f1d1d;
+}
+
