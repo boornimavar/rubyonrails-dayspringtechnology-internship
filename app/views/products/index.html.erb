@@ -1,16 +1,39 @@
-<p style="color: green"><%= notice %></p>
+<div class="page-wrapper">
+  <h1 class="page-title">Products</h1>
 
-<% content_for :title, "Products" %>
+  <%= link_to "New Product", new_product_path, class: "btn btn-primary" %>
+  <% if @low_stock_products.any? %>
+   
+        <% @low_stock_products.each do |stock| %>
+          <li>Stock: <%= stock %></li>
+        <% end %>
+      
+    </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
 
-<h1>Products</h1>
-
-<div id="products">
-  <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
-  <% end %>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td>₹ <%= product.price %></td>
+          <td><%= product.stock %></td>
+          <td>
+            <%= link_to "Show", product, class: "btn btn-primary" %>
+            <%= link_to "Edit", edit_product_path(product), class: "btn btn-edit" %>
+            <%= link_to "Delete", product, method: :delete,
+                  data: { confirm: "Are you sure?" },
+                  class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New product", new_product_path %>

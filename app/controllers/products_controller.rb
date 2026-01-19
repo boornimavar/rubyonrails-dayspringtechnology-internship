@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @products = Product.all
+    @low_stock_products = Product.limit(3).pluck(:stock).select { |stock| stock < 10 }
   end
 
   # GET /products/1 or /products/1.json
@@ -68,3 +69,6 @@ class ProductsController < ApplicationController
       params.expect(product: [ :name, :description, :price, :stock ])
     end
 end
+
+
+

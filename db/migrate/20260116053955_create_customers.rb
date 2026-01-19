@@ -3,6 +3,7 @@ class CreateCustomers < ActiveRecord::Migration[8.1]
     create_table :customers do |t|
       t.string :name
       t.string :email
+      t.boolean :is_active, default: true, null: false
 
       t.timestamps
     end
