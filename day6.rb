@@ -1,107 +1,84 @@
-# # students_id = [1, 2, 3, 4, 5, 6]
-# # for i in 10..15
-# #     puts i+10
-# # end
+# day 6
+# loops and array methods 
 
-# # #for loop w array
-# # for i in students_id
-# #     puts i
-# # end
+arr = [2, 4, 6, 8, 10, 12]
+# for loop with range
+# ".." includes the last value also
+for i in 10..15
+  print i
+end
 
-# # #for loop w range and condition
-# # for i in students_id
-# #     if i <5
-# #         puts i
-# #     end
-# # end
+# while loop
+# need to initialize first
+i = 0
+while i <= 10
+  puts i
+  i += 1
+end
 
-# #loop
 # loop do
-#     puts "This will run forever"
-#     break
+# this will run forever unless we break it
+k = 0
+loop do
+  puts "student : #{k}"
+  k += 1
+  break if k > 5
+end
+
+# until loop
+# this runs until the condition is true
+# opposite of while
+c = 0
+until c > 5
+  puts c
+  c += 1
+end
+
+# next keyword
+# it skips the current iteration
+for i in 1..5
+  next if i == 3
+  puts i
+end
+
+
+arr = [1, 2, 3, 4, 5]
+# select, original array will change. it selects values based on condition.
+# reject, removes values that match condition
+# map and collect return new array
+# each returns original array
+select_arr = arr.select { |n| n > 2 }
+reject_arr = arr.reject { |n| n.even? }
+map_arr = arr.map { |n| n * 2 }
+each_arr = arr.each { |n| puts n }
+puts "Original array: #{arr}"
+puts "Selected array: #{select_arr}"
+puts "Rejected array: #{reject_arr}"
+puts "Mapped array: #{map_arr}"
+puts "Each array: #{each_arr}"
+
+#redo keyword
+#it was the most confusing for me, but figured it out. i would to explain it as, redo is like retry but without re-evaluating the condition of the loop.
+=begin
+This is te example i started off with, lost my mind since it is an infinite loop and start questioning whats the use of redo if it gives infinite loop .
+redo cant be used like this in real world scenario. it can be used in a scenario, when you want to repeat the same step or retry until a certain condition is met.
+# i = 0
+# while i < 3
+#   puts i
+#   redo if i == 0
+#   i += 1
 # end
+=end
 
-# loop do students_id
-#     puts students_id
-#     break if students_id.length <= 3
-#     students_id.pop
-# end
+loop do
+  puts "enter a number less than 3"
+  num = gets.chomp.to_i
 
-# # loop students_id do 
-# #     puts i if i <5
-# # end
-
-# #until 
-
-# #while loop
-
-# redo in intertaor condition
-# next in interator conditon
-
-# for i in i..5
-#     puts i
-#     break if i == 3
-#     redo if i<2
-# end
-
-# students_id = [1, 2, 3, 4, 5, 6]
-
-# students_id.each do |id|
-#   puts id
-#   break if id == 3
-# end
-
-# for i in 1..5
-#     puts i
-#     break if i == 3
-#     redo if i<3
-# end
-
-# def question (quest , ans )
-#   1.times do
-#     puts quest
-#     a = gets.chomp
-#     if a == ans
-#       puts "good job"
-#     else
-#       puts "Try Again!"
-#       redo
-#     end
-#   end
-# end
-
-# question("What is 2 + 2 ?" , "4")
-
-#transform arr
-#each
-#select
-#reject
-#map
-#all
-#inject
-
-arr = [1,2,3,4,5,6]
-
-# puts arr.select {|num| num > 3}
-# odd_arr =  arr.select {|num| num.odd?}
-# print odd_arr
-
-# puts arr.reject {|num| num > 3}
-
-
-
-# # we are making transformation to copy of the arr
-# # to make chanes in oriinal arr use map!!
-# arr.map! {|num| num*3}
-
-# #opposite of all is any
-# puts arr.all? {|num| num > 0}
-
-# map, eac and colect-> similar methods, but colect is faster than map and each
-# map vs collect vs each
-map_mutiples = arr.map {|num| num*2}
-print map_mutiples
-each_mutiples = arr.each{|num| num*2}
-print each_mutiples
-collect_mutiples = arr.collect {|num| num*2}
-print collect_mutiples
+  if num < 3
+    puts "okay"
+    break
+  else
+    puts "try again"
+    redo
+  end
+end
