@@ -259,4 +259,138 @@ Used for type conversion.
 ## method chaining
 Calling multiple methods together is known as method chaining and helps in writing clean and concise code.
 
-<!-- ## Day 6 – loops and its methods  -->
+## Day 6 – Loops and Array Methods in Ruby
+
+The sixth day focused on understanding different types of loops in Ruby, common loop control keywords, and frequently used array methods.
+
+## Loops in Ruby
+
+Ruby provides multiple ways to perform iteration depending on the use case.
+
+### for loop
+The `for` loop is commonly used with ranges and arrays.
+
+- `..` includes the last value in the range
+- Iteration happens automatically
+
+### while loop
+The `while` loop runs as long as the condition remains true.
+
+- Variables must be initialized before the loop
+- Condition is checked before every iteration
+
+### loop do
+The `loop do` construct runs infinitely unless explicitly stopped.
+
+- Requires a `break` condition
+- Useful when exit conditions are defined inside the loop
+
+### until loop
+The `until` loop runs until the condition becomes true.
+
+- Opposite behavior of `while`
+- Executes while the condition is false
+
+## Loop Control Keywords
+
+### `break`
+Used to exit a loop immediately when a condition is met.
+
+### `next`
+Skips the current iteration and moves to the next one.
+
+## Array Methods
+
+Ruby provides powerful iterator methods to work with arrays.
+
+### `select`
+Returns elements that satisfy the given condition.
+
+### `reject`
+Removes elements that satisfy the given condition.
+
+### `map` / `collect`
+Returns a new array by transforming each element.
+
+### `each`
+Iterates over elements but returns the original array.
+
+## `redo` Keyword
+
+The `redo` keyword repeats the current iteration without re-evaluating the loop condition.
+
+Initially, this can be confusing because using `redo` incorrectly can cause an infinite loop.
+
+`redo` is not meant to be used casually.  
+It is useful only when the same step needs to be retried until valid input or a specific condition is met.
+
+A common real-world use case is input validation, where the user is asked to retry until correct input is provided.
+
+
+## Day 7 – Inheritance in Ruby
+
+The seventh day focused on understanding inheritance in Ruby, method lookup, and how child classes interact with parent classes using the `super` keyword.
+
+## Naming Conventions
+Ruby follows specific naming conventions to maintain readability and consistency.
+
+- Methods and variables use `snake_case`
+- Classes use `CamelCase`
+- Constants and global values are written in `UPPER_CASE`
+
+## Inheritance
+Inheritance allows a class (child) to reuse methods and behavior from another class (parent).  
+The child class can also override parent methods if needed.
+
+## Method Overriding
+A child class can redefine a method that already exists in the parent class.  
+When overridden, the child’s method is executed instead of the parent’s.
+
+## Method Lookup Path
+When a method is called, Ruby searches for it in a specific order called the method lookup path.
+
+The lookup generally follows this order:
+- Child class
+- Parent class
+- Object
+- Kernel
+- BasicObject
+
+This explains how Ruby decides which method to execute.
+
+## `super` Keyword
+The `super` keyword is used inside a child class to call the parent class’s method with the same name.  
+It helps extend existing behavior instead of completely replacing it.
+
+## `super` with `initialize`
+`super` can also be used inside constructors to reuse initialization logic from the parent class.  
+This avoids duplicate code and keeps initialization centralized.
+
+## `respond_to?` Method
+The `respond_to?` method is used to check whether an object can respond to a specific method.  
+It returns `true` or `false`.
+
+## Dynamic Typing in Ruby
+Ruby supports dynamic typing, which means the same method can work with different data types.  
+Type checking is handled at runtime, not at compile time.
+
+## Method Overriding and Kernel Methods
+
+In Ruby, many commonly used methods such as `puts` come from the `Kernel` module.  
+The `Kernel` module is automatically included in the `Object` class, which means all Ruby objects can access these methods.
+
+Because of this, methods like `puts` are available everywhere without explicitly calling `Kernel.puts`.
+
+## Overriding Built-in Methods
+
+A class can define a method with the same name as a built-in method.  
+When this happens, Ruby uses the class’s method instead of the one from `Kernel`.
+
+In the example, the `puts` method is redefined inside a class.  
+When `puts` is called on an object of that class, Ruby executes the custom method instead of the default `Kernel#puts`.
+
+This behavior follows Ruby’s method lookup path:
+- Ruby first checks the object’s class
+- Then its parent classes
+- Then `Object`, `Kernel`, and finally `BasicObject`
+
