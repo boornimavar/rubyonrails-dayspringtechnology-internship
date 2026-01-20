@@ -259,11 +259,4 @@ Used for type conversion.
 ## method chaining
 Calling multiple methods together is known as method chaining and helps in writing clean and concise code.
 
-so i have did these lines in products.db...and did the same the same thing in rails console and saw the output....now what do we do wit .db file can we see the the output in ui or something
-class Product < ApplicationRecord
-    #
-    @status = Product.all.limit(3).pluck(:price);
-    # @status = Product.all.limit(3).pluck(:price);
-    @status = Product.all.limit(3).pluck(:stock);
-    #condition for each and exucute all methods
-end
+<!-- ## Day 6 – loops and its methods  -->
