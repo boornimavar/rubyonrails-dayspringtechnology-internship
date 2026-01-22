@@ -120,29 +120,25 @@ obj.add(5, " apples")
 
 
 
-# class First
-#   def greet
-#     "hello from first class"
-#   end
-# end
+class First
+  def greet
+    "hello from first class"
+  end
+end
 
-# class Second < First
-#   def greet
-#     super + " and hello from second class"
-#   end
+class Second < First
+  def greet
+    super + " and hello from second class"
+  end
 
-#   def m1
-#     p "method m1 from second class"
-#   end
+  def m1
+    p "method m1 from second class"
+  end
 
-#   def puts
-#     print "The second class says: #{greet}"
-#   end
-# end
+  def puts
+    print "The second class says: #{greet}"
+  end
+end
 
-# obj = Second.new
-# puts obj.puts
-
-# class Object
-#   include Kernel
-# end
+obj = Second.new
+puts obj.puts
