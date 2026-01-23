@@ -1,44 +1,43 @@
 <div class="page-wrapper">
-  <h1 class="page-title">Customers</h1>
+
+  <div class="page-header">
+    <h1 class="page-title">Customers</h1>
+    
+    
+    <%= link_to "New Customer", new_customer_path, class: "btn btn-primary" %>
+  </div>
 
   <% if notice %>
-    <div class="notice"><%= notice %></div>
+    <p class="notice"><%= notice %></p>
   <% end %>
 
-  <%= link_to "New Customer", new_customer_path, class: "btn btn-primary" %>
+  <div class="card-grid">
+    <% @customers.each do |customer| %>
+      <div class="customer-card <%= 'inactive-card' unless customer.is_active %>">
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
+        <div>
+          <div class="card-header">
+            <h3 class="customer-name"><%= customer.name %></h3>
 
-    <tbody>
-      <% @customers.each do |customer| %>
-        <tr class="<%= 'inactive-row' unless customer.is_active %>">
-          <td><%= customer.name %></td>
-          <td><%= customer.email %></td>
-
-          <td>
-            <span class="status-badge <%= customer.is_active ? 'active' : 'inactive' %>">
-              <%= customer.is_active ? 'Active' : 'Inactive' %>
+            <span class="status <%= customer.is_active ? 'active' : 'inactive' %>">
+              <%= customer.is_active ? "Active" : "Inactive" %>
             </span>
-          </td>
+          </div>
 
-          <td>
-            <%= link_to "Show", customer, class: "btn btn-primary" %>
-            <%= link_to "Edit", edit_customer_path(customer), class: "btn btn-edit" %>
-            <%= link_to "Delete", customer,
-                  method: :delete,
-                  data: { confirm: "Are you sure?" },
-                  class: "btn btn-danger" %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          <p class="customer-email"><%= customer.email %></p>
+        </div>
+
+        <div class="card-actions">
+          <%= link_to "Show", customer, class: "btn btn-primary" %>
+          <%= link_to "Edit", edit_customer_path(customer), class: "btn btn-edit" %>
+          <%= link_to "Delete", customer,
+                method: :delete,
+                data: { confirm: "Are you sure?" },
+                class: "btn btn-danger" %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+
 </div>

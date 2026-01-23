@@ -11,6 +11,7 @@
         <th>Price</th>
         <th>Stock</th>
         <th>Actions</th>
+        <th>Status</th>
       </tr>
     </thead>
 
@@ -20,6 +21,7 @@
           <td><%= product.name %></td>
           <td>₹ <%= product.price %></td>
           <td><%= product.stock %></td>
+          
           <td>
             <%= link_to "Show", product, class: "btn btn-primary" %>
             <%= link_to "Edit", edit_product_path(product), class: "btn btn-edit" %>
@@ -27,8 +29,11 @@
                   data: { confirm: "Are you sure?" },
                   class: "btn btn-danger" %>
           </td>
+          <td><%= product.status %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  
 </div>
+

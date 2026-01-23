@@ -1,22 +1,62 @@
 class Customer < ApplicationRecord
-   class Customer < ApplicationRecord
-  validates :name, presence: true
+  
+  # # Day 10
+  # scope :unique_email, -> {where(email: "san@gmail.com").pluck( :email)} #model name and table name are defaultly fixed by rails without us giving any aias name.
+  # scope :whitelisted_products,  -> { where("id IN (?)", [1, 2, 3]) }
+  # scope :blacklisted_customers, ->(customer_ids) { where(id: customer_ids) } 
+  # scope :blacklisted_emails, ->(customer_emais) { where(id: customer_emails) } 
+  # scope :blacklisted_customers, -> { where(id: [1, 2]) }
+  scope :blacklisted_customers, ->(ids) { where(id: ids) }
 
-  validates :email,
-            presence: true,
-            uniqueness: true,
-            format: {
-              with: URI::MailTo::EMAIL_REGEXP,
-              message: "is not a valid email"
-            }
-end
+  # # obj attributes, table cols
+  # # check repeated emails
+  
+  # # custom route
+  # # first we have to write in controller
 
-    # def check_email
-    #     #if email exists
-    # end
-    # def check_name
-    #     #check if it has alphabets only
-    # end
+  # # custom route
+
+  # # scope with arguements.
+  # scope :whitelisted_products,  -> { where("id IN (?)", [1, 2, 3]) }
+
+  # scope :blacklisted_customers, ->(customer_ids) { where(id: customer_ids) } 
+
+  # # Day 9
+  # validates :name, presence: true
+
+  # validates :email,
+  #           presence: true,
+  #           uniqueness: true,
+  #           format: {
+  #             with: URI::MailTo::EMAIL_REGEXP,
+  #             message: "is not a valid email"
+  #           }
+
+  #   def check_email
+  #       #if email exists
+  #   end
+  #   def check_name
+  #       #check if it has alphabets only
+  #   end
+  # scope :unique_email, -> {distinct.where (email:email)} #model name and table name are defaultly fixed by rails without us giving any aias name.
+  # # obj attributes, table cols
+  # #check repeated emails
+  # validates :name, presence: true
+
+  # validates :email,
+  #           presence: true,
+  #           uniqueness: true,
+  #           format: {
+  #             with: URI::MailTo::EMAIL_REGEXP,
+  #             message: "is not a valid email"
+  #           }
+
+  #   def check_email
+  #       #if email exists
+  #   end
+  #   def check_name
+  #       #check if it has alphabets only
+  #   end
     
 end
 

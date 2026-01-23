@@ -3,8 +3,12 @@ class CustomersController < ApplicationController
 
   # GET /customers or /customers.json
   def index
+    # list_of_customers = [1,2,3]
+    # @customers = Customer.blacklisted_customers(list_of_customers)
     @customers = Customer.all
   end
+
+
 
   # GET /customers/1 or /customers/1.json
   def show
@@ -18,6 +22,15 @@ class CustomersController < ApplicationController
   # GET /customers/1/edit
   def edit
   end
+
+  # def blacklisted_customers
+  #   @customers = Customer.blacklisted_customers
+  # end
+
+  def blacklisted_customers
+  @customers = Customer.blacklisted_customers([1,2])
+   render :index
+end
 
   # POST /customers or /customers.json
   def create
@@ -33,6 +46,9 @@ class CustomersController < ApplicationController
       end
     end
   end
+
+  
+
 
   # PATCH/PUT /customers/1 or /customers/1.json
   def update

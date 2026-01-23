@@ -1,4 +1,12 @@
 class Product < ApplicationRecord
+  #day 10 scope
+  # scope :out_of_stock, -> { where("stock <= ?", 0) } #views, controllers
+  scope :out_of_stock, -> { where(stock: 0) }
+
+  # scope joins_scope, -> {joins(name of the col and table you are jonining)}
+  # scope :whitelisted_products,  -> { where("id IN (?)", [1, 2, 3]) }
+  # scope :blacklisted_customers, ->(customer_ids) { where(id: customer_ids) } 
+  # scope :sequel_scope, -> query {} #full sequel query can be used inside, not necessariy ruby query.
   
   #day 8 tasks
   # def self.available
@@ -34,33 +42,33 @@ class Product < ApplicationRecord
 
   # regax validation to not alow special validation
   #using regax whether the product name is alphanumeric a-z,0-9
-  validates :name,
-            presence: true, 
-            format: { with: /\\A[a-z0-9]+\\z/i, message: "only numbers and alphabets are apllicable"}
+  # validates :name,
+  #           presence: true, 
+  #           format: { with: /\\A[a-z0-9]+\\z/i, message: "only numbers and alphabets are apllicable"}
   
             
   #custom validation for price if the status is active, add price
-  validate :check_status
-  def check_status
-  return unless status == "active"
-  if status == "active" && price.to_f <= 0
-    errors.add(:price, "must be greater than 0 when product is active")
-  end
-  if status == "active" && stock.to_i <= 0
-    errors.add(:stock, "must be greater than 0 when product is active")
-  end
-  end
+  # validate :check_status
+  # def check_status
+  # return unless status == "active"
+  # if status == "active" && price.to_f <= 0
+  #   errors.add(:price, "must be greater than 0 when product is active")
+  # end
+  # if status == "active" && stock.to_i <= 0
+  #   errors.add(:stock, "must be greater than 0 when product is active")
+  # end
+  # end
 
   #if active is false stock cant be incremented
-  validate :stock_increase
+  # validate :stock_increase
 
-  def stock_increase
-    return unless status == "inactive"
+  # def stock_increase
+  #   return unless status == "inactive"
 
-    if stock_changed? && stock > stock_was
-      errors.add(:stock, "cannot be increased when product is inactive")
-    end
-  end
+  #   if stock_changed? && stock > stock_was
+  #     errors.add(:stock, "cannot be increased when product is inactive")
+  #   end
+  # end
 
 # use inbuilt validation , accept only if its checked, acceptance : true
 # wanted to use acceptance: true here
@@ -79,6 +87,11 @@ acceptance validation won't work here.
   #    errors.add(:base, "stock aint available")
   #   end
   # end
+
+
+  
+
+  
 end
 
 
