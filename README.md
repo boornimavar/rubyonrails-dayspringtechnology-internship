@@ -442,9 +442,9 @@ def index
 end
 ```
 
-### It throws an error and it is caused by removing `index route from products_controller.rb`, once the server runs it sends the `request to products#index`. It sets `@cafe = nil` and we cant iterate it and so the error.
+ It throws an error and it is caused by removing `index route from products_controller.rb`, once the server runs it sends the `request to products#index`. It sets `@cafe = nil` and we cant iterate it and so the error.
 
-### Route reached controller, but controller had no action to execute
+ Route reached controller, but controller had no action to execute
 
 
 ### 2. Run products route from routes.rb and run Rails server
@@ -452,16 +452,16 @@ end
 - `Routing Error`
 - `No route matches [GET] "/products"`
 
-### This error is caused by removing `resources :products do` from the routes.rb. Routes of the specific tables has to be set before we run a server.
+ This error is caused by removing `resources :products do` from the routes.rb. Routes of the specific tables has to be set before we run a server.
 
-### Without route, controller is useless.
+ Without route, controller is useless.
 
 ### 3. Remove the view file (.html.erb) of products from view folder
 
 - `No view template for interactive request`
 - `ProductsController#index is missing a template for request formats: text/html`
 
-### Rails usually expects a controller action to render a view template with the same name. For example, a ProductsController#index action defined in app/controllers/Products_controller.rb should have a corresponding view template in a file named app/views/Products/index.html.erb.
+ Rails usually expects a controller action to render a view template with the same name. For example, a ProductsController#index action defined in app/controllers/Products_controller.rb should have a corresponding view template in a file named app/views/Products/index.html.erb.
 
 ## Route -> Controller Action -> View -> Response
 
