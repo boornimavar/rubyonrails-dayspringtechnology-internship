@@ -436,9 +436,11 @@ This behavior follows Ruby’s method lookup path:
 - `NoMethodError in Cafes#index`
 - `undefined method 'each' for nil`
 
-```def index
-@cafes = Cafe.all
-end```
+```ruby
+def index
+  @cafes = Cafe.all
+end
+```
 
 ### It throws an error and it is caused by removing `index route from products_controller.rb`, once the server runs it sends the `request to products#index`. It sets `@cafe = nil` and we cant iterate it and so the error.
 
