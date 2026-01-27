@@ -396,7 +396,7 @@ This behavior follows Ruby’s method lookup path:
 
 ## Day 8 - Conditionals and Access Modifiers
 
-# if and unless, the opposite of if is unless, the wil continue to execute until the condition is true. conditional statements works the same in Ruby like any programming languages. But there are `unless`, `until`, 
+## if and unless, the opposite of if is unless, the wil continue to execute until the condition is true. conditional statements works the same in Ruby like any programming languages. But there are `unless`, `until`, 
 
 
 
@@ -410,64 +410,74 @@ This behavior follows Ruby’s method lookup path:
 2. custom validation  (validate: custom_function)
 
 ## standard validation 
-  # its when the deafult or pre built vaidations comes into play.
-  # for example using `required:true` in form validations of any fields.
+  ## its when the deafult or pre built vaidations comes into play.
+  ## for example using `required:true` in form validations of any fields.
 
 ## custom validation
-  # it is when we manually specify, how the error should look like and when the error should arise. we can specify this by using `conditional statements`
+  ## it is when we manually specify, how the error should look like and when the error should arise. we can specify this by using `conditional statements`
 
 ## Day 10     
 
-## Day 12 - Undersatnding MVC and Routes of rails and Action Components of Ruby
+# Day 12 - Understanding MVC and Routes of Rails and Action Components of Ruby
 
 - This session was all about understanding models, views, controller and routes better.
-- One of the ways to get a hold of this topic was getting to know about Action Compoents of Rails.
+- One of the ways to get a hold of this topic was getting to know about Action Components of Rails.
 
-## Rails Flow 
-  - Knowing about what is happening in the background is important as it is imporatant as doing stuff manually, like how the localhost perfectly takes to the specified route when we only make changes to the files of the appliaction physically. 
+## Rails Flow
 
-  -  Route → Controller action (def) → View (.html.erb) → Response
+- Knowing about what is happening in the background is important as it is important as doing stuff manually, like how the localhost perfectly takes to the specified route when we only make changes to the files of the application physically.
 
-  - To understand this better, we made some changes to rails appliaction files and understood why the error arises.
+- Route → Controller action (def) → View (.html.erb) → Response
 
-1. Remove def index from product_controller.rb. 
-    1. `NoMethodError in Cafes#index`
-    2. `undefined method 'each' for nil`
+- To understand this better, we made some changes to Rails application files and understood why the error arises.
 
-## It throws an error and it is caused by removing `index route from products_controller.rb`, once the server runs it sents the `request to products#index`. It sets `@cafe = nil` and we cant iterate it and so the error.
-## Route reached controller, but controller had no action to execute
-  ``def index
-    @cafes = Cafe.all
-  end``
+### 1. Remove def index from products_controller.rb
 
-2. Run products route from routes.rb and run rails server
-    1. `Routing Error`
-    2. `No route matches [GET] "/products"`
+- `NoMethodError in Cafes#index`
+- `undefined method 'each' for nil`
 
-## This error is caused by romoving `resources :products do` from the routes.rb. Routes of the specific tables has to be set before we run a server.
-## Without route, controller is useless.
+```def index
+@cafes = Cafe.all
+end```
 
-3. Remove the view file (.html.erb) of products from view folder
-    1. `No view template for interactive request`
-    2. `ProdutsController#index is missing a template for request formats: text/html`
+### It throws an error and it is caused by removing `index route from products_controller.rb`, once the server runs it sends the `request to products#index`. It sets `@cafe = nil` and we cant iterate it and so the error.
 
-## Rails usually expects a controller action to render a view template with the same name. For example, a ProdutsController#index action defined in app/controllers/Produts_controller.rb should have a corresponding view template in a file named app/views/Produts/index.html.erb.
+### Route reached controller, but controller had no action to execute
 
-## Route -> Controller Action -> View -> Rsponse
+
+### 2. Run products route from routes.rb and run Rails server
+
+- `Routing Error`
+- `No route matches [GET] "/products"`
+
+### This error is caused by removing `resources :products do` from the routes.rb. Routes of the specific tables has to be set before we run a server.
+
+### Without route, controller is useless.
+
+### 3. Remove the view file (.html.erb) of products from view folder
+
+- `No view template for interactive request`
+- `ProductsController#index is missing a template for request formats: text/html`
+
+### Rails usually expects a controller action to render a view template with the same name. For example, a ProductsController#index action defined in app/controllers/Products_controller.rb should have a corresponding view template in a file named app/views/Products/index.html.erb.
+
+## Route -> Controller Action -> View -> Response
+
 - Route decides the path, controller action decides the logic, view decides the presentation or UI, and together they form the response.
 
 ## Action Components
-So far we saw about 10 action components. I have created a [Notion Page] (https://flash-oboe-0f1.notion.site/2f51a566a462809eb814e80c363d24cb?v=2f51a566a46280be912c000c8dcd9ef8). Click to see it! as we explore the components in detail i will make changes to the page.
 
-# To explore in future sessions
-- While generatig migration....when making changes to table, gen migration -> a file will be created. -> rails db:migrate
-To safely migrate => if del a table and if it is associated to another table, it migt throw error -> up(exception case)/down(finally) or rollback
-- generatig controller...rails generate controller controller_name, view is also gen along w that (action pack, they come in pairs)
+So far we saw about 10 action components. I have created a [Notion Page](https://flash-oboe-0f1.notion.site/2f51a566a462809eb814e80c363d24cb?v=2f51a566a46280be912c000c8dcd9ef8). Click to see it! As we explore the components in detail I will make changes to the page.
 
-# To do
-Gen controller and see the created files
-create a new e wellcome.rb in mailers folder of layouts
-notif -> 
+## To explore in future sessions
 
+- While generating migration....when making changes to table, gen migration -> a file will be created. -> rails db:migrate  
+To safely migrate => if deleting a table and if it is associated to another table, it might throw error -> up(exception case)/down(finally) or rollback
 
+- generating controller...rails generate controller controller_name, view is also generated along with that (action pack, they come in pairs)
 
+## To do
+
+Gen controller and see the created files  
+create a new welcome.rb in mailers folder of layouts  
+notif ->
