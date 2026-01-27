@@ -416,9 +416,9 @@ This behavior follows Ruby’s method lookup path:
 ## custom validation
   # it is when we manually specify, how the error should look like and when the error should arise. we can specify this by using `conditional statements`
 
-# Day 10     
+## Day 10     
 
-# Day 12 - Undersatnding MVC and Routes of rails and Action Components of Ruby
+## Day 12 - Undersatnding MVC and Routes of rails and Action Components of Ruby
 
 - This session was all about understanding models, views, controller and routes better.
 - One of the ways to get a hold of this topic was getting to know about Action Compoents of Rails.
@@ -434,8 +434,8 @@ This behavior follows Ruby’s method lookup path:
     1. `NoMethodError in Cafes#index`
     2. `undefined method 'each' for nil`
 
-# It throws an error and it is caused by removing `index route from products_controller.rb`, once the server runs it sents the `request to products#index`. It sets `@cafe = nil` and we cant iterate it and so the error.
-# Route reached controller, but controller had no action to execute
+## It throws an error and it is caused by removing `index route from products_controller.rb`, once the server runs it sents the `request to products#index`. It sets `@cafe = nil` and we cant iterate it and so the error.
+## Route reached controller, but controller had no action to execute
   ``def index
     @cafes = Cafe.all
   end``
@@ -444,16 +444,16 @@ This behavior follows Ruby’s method lookup path:
     1. `Routing Error`
     2. `No route matches [GET] "/products"`
 
-# This error is caused by romoving `resources :products do` from the routes.rb. Routes of the specific tables has to be set before we run a server.
-# Without route, controller is useless.
+## This error is caused by romoving `resources :products do` from the routes.rb. Routes of the specific tables has to be set before we run a server.
+## Without route, controller is useless.
 
 3. Remove the view file (.html.erb) of products from view folder
     1. `No view template for interactive request`
     2. `ProdutsController#index is missing a template for request formats: text/html`
 
-# Rails usually expects a controller action to render a view template with the same name. For example, a ProdutsController#index action defined in app/controllers/Produts_controller.rb should have a corresponding view template in a file named app/views/Produts/index.html.erb.
+## Rails usually expects a controller action to render a view template with the same name. For example, a ProdutsController#index action defined in app/controllers/Produts_controller.rb should have a corresponding view template in a file named app/views/Produts/index.html.erb.
 
-# Route -> Controller Action -> View -> Rsponse
+## Route -> Controller Action -> View -> Rsponse
 - Route decides the path, controller action decides the logic, view decides the presentation or UI, and together they form the response.
 
 ## Action Components
