@@ -19,7 +19,7 @@ To view the installed versions of Ruby, Rails, and RubyGems on Windows:
 4. Run the file using the command:
    ruby day1.rb
 
-# Rails
+## Rails
 Rails is a web framwwork of ruby, whic follows MVC archietecture.
 M -> Models
 V -> Views
@@ -35,7 +35,7 @@ i will talk about these in detail later!
 now the rails appication my_app is live now!
 
 
-## Day 2 – Models, Database & Rails Structure
+# Day 2 – Models, Database & Rails Structure
 
 The second day focused on generating models using scaffolding in a Rails application, creating database tables with columns and rows, and a full-fledged session on the file structure of a Ruby on Rails project. We especially explored the `config`, `bin`, and `db` folders, along with the `Rakefile`, schema file, and database migrations.
 
@@ -74,7 +74,7 @@ If we remove the plural form `resources` → `resource`, the `index` action is n
 Rails provides `--skip` commands while creating a new application to avoid installing unnecessary components.  
 
 
-## Day 3 – Rails Components, Architecture 
+# Day 3 – Rails Components, Architecture 
 
 The third day of the Ruby on Rails internship focused on understanding the internal components of Rails, application architecture, file storage mechanisms in Rails applications.
 
@@ -180,15 +180,15 @@ The fourth day of the Ruby on Rails internship focused on understanding Ruby fun
 
 ## Methods in Ruby
 
-## Instance Methods
+### Instance Methods
 - Defined normally inside a class
 - Called on objects created from the class
 
-## Class Methods
+### Class Methods
 - Defined using `self.method_name`
 - Called directly on the class
 
-## Data Types in Ruby
+### Data Types in Ruby
 - Integer
 - String
 - Boolean
@@ -199,7 +199,7 @@ The fourth day of the Ruby on Rails internship focused on understanding Ruby fun
 - `class` → returns the class of an object
 - `object_id` → returns the unique identifier of an object
 
-## Day 5 – Ruby Input/Output, Strings & Data Types
+# Day 5 – Ruby Input/Output, Strings & Data Types
 
 The fifth day of the Ruby on Rails internship focused on understanding Ruby input and output methods, string behavior,core data types, and handling user input using method chaining.
 
@@ -253,7 +253,7 @@ Takes input from the user.
 ## chomp
 Removes the trailing newline character from input.
 
-# to_i / to_f
+## to_i / to_f
 Used for type conversion.
 
 ## method chaining
@@ -315,19 +315,16 @@ Returns a new array by transforming each element.
 ### `each`
 Iterates over elements but returns the original array.
 
-## `redo` Keyword
-
+### `redo` Keyword
 The `redo` keyword repeats the current iteration without re-evaluating the loop condition.
 
 Initially, this can be confusing because using `redo` incorrectly can cause an infinite loop.
-
-`redo` is not meant to be used casually.  
-It is useful only when the same step needs to be retried until valid input or a specific condition is met.
+`redo` is not meant to be used casually. It is useful only when the same step needs to be retried until valid input or a specific condition is met.
 
 A common real-world use case is input validation, where the user is asked to retry until correct input is provided.
 
 
-## Day 7 – Inheritance in Ruby
+# Day 7 – Inheritance in Ruby
 
 The seventh day focused on understanding inheritance in Ruby, method lookup, and how child classes interact with parent classes using the `super` keyword.
 
@@ -394,12 +391,114 @@ This behavior follows Ruby’s method lookup path:
 - Then its parent classes
 - Then `Object`, `Kernel`, and finally `BasicObject`
 
-## Day 8 - Conditionals and Access Modifiers
+# Day 8 – Conditionals and Access Modifiers
 
-## if and unless, the opposite of if is unless, the wil continue to execute until the condition is true. conditional statements works the same in Ruby like any programming languages. But there are `unless`, `until`, 
+The eighth day focused on understanding conditional statements in Ruby and how method visibility is controlled using access modifiers.
 
+## Conditionals in Ruby
 
+Ruby provides keywords that make conditions readable and expressive.
 
+- `if` executes when the condition is true
+- `unless` executes when the condition is false (means if not)
+- `until` runs a loop until the condition becomes true
+
+```ruby
+age = 18
+
+if age >= 18
+  puts "Adult"
+end
+
+unless age < 18
+  puts "Eligible"
+end
+
+count = 1
+until count > 3
+  puts count
+  count += 1
+end
+```
+
+These keywords make Ruby code read close to plain English.
+
+## One-line Conditionals
+
+Ruby allows writing conditions in a single line.
+
+```ruby
+puts "Adult" if age >= 18
+puts "Minor" unless age >= 18
+```
+
+- Reduces code length
+- Common Ruby style used in real programs
+
+## `case` Statement
+
+The `case` statement is used when checking multiple conditions.
+
+```ruby
+day = "Sunday"
+
+case day
+when "Sunday"
+  puts "Holiday"
+when "Monday"
+  puts "Work day"
+else
+  puts "Normal day"
+end
+```
+
+- Cleaner than multiple if-elsif
+- Improves readability and structure
+
+## Access Modifiers in Ruby
+
+Access modifiers control who can access methods inside a class.
+
+## `public`
+
+- Accessible from anywhere
+- Default method visibility
+
+## `private`
+
+- Accessible only inside the class
+
+```ruby
+class User
+  def display
+    greet
+  end
+
+  private
+
+  def greet
+    "Hello"
+  end
+end
+```
+
+## `protected`
+
+- Accessible within the class and by objects of the same class
+
+```ruby
+class User
+  attr_reader :age
+
+  def older_than?(other_user)
+    age > other_user.age
+  end
+
+  protected
+
+  attr_reader :age
+end
+```
 
 ## Day 9 - Validation
 
