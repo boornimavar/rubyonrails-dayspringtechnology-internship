@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-
   resources :products do
-
-  # resources :products, skip: [show]
-  # resources :products, only: [new, delete]
+  
+  # resources :products, except: [:show] do
+  # resources :products, only: [:new, :destroy] do
     collection do
       get :out_of_stock
     end

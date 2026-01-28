@@ -8,18 +8,8 @@ class Customer < ApplicationRecord
   # scope :blacklisted_customers, -> { where(id: [1, 2]) }
   scope :blacklisted_customers, ->(ids) { where(id: ids) }
 
-  # # obj attributes, table cols
-  # # check repeated emails
-  
-  # # custom route
-  # # first we have to write in controller
-
-  # # custom route
-
   # # scope with arguements.
   # scope :whitelisted_products,  -> { where("id IN (?)", [1, 2, 3]) }
-
-  # scope :blacklisted_customers, ->(customer_ids) { where(id: customer_ids) } 
 
   # # Day 9
   # validates :name, presence: true

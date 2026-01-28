@@ -471,15 +471,12 @@ end
 
 So far we saw about 10 action components. I have created a [Notion Page](https://flash-oboe-0f1.notion.site/2f51a566a462809eb814e80c363d24cb?v=2f51a566a46280be912c000c8dcd9ef8). Click to see it! As we explore the components in detail I will make changes to the page.
 
-## To explore in future sessions
+## Generatig Migration
 
 - While generating migration....when making changes to table, gen migration -> a file will be created. -> rails db:migrate  
-To safely migrate => if deleting a table and if it is associated to another table, it might throw error -> up(exception case)/down(finally) or rollback
+To safely migrate and if it is associated to another table, it might throw error in that case use up(exception case)/down(finally) or rollback.
 
-- generating controller...rails generate controller controller_name, view is also generated along with that (action pack, they come in pairs)
+## Generating Controller
 
-## To do
+- While generating controller `rails generate controller controller_name`, view is also generated along with that. Controller and View are action pack, they come in pair.
 
-Gen controller and see the created files  
-create a new welcome.rb in mailers folder of layouts  
-notif ->
