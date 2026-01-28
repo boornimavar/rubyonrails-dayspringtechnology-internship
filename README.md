@@ -500,11 +500,11 @@ class User
 end
 ```
 
-## Day 9 - Validation
+# Day 9 - Validation
 
-## before saving the data to the database, it is always useful and precautionary to check whether the data is appicable and if it meets the required measures.
+ Before saving the data to the database, it is always useful and precautionary to check whether the data is appicable and if it meets the required measures.
 
-### Types of vaidation
+## Types of vaidation
 1. standard vaidation (validates: inbuilt_method)
 2. custom validation  (validate: custom_function)
 
@@ -515,7 +515,7 @@ end
 ## custom validation
   ## it is when we manually specify, how the error should look like and when the error should arise. we can specify this by using `conditional statements`
 
-## Day 10     
+# Day 10     
 
 # Day 12 - Understanding MVC and Routes of Rails and Action Components of Ruby
 
@@ -530,7 +530,7 @@ end
 
 - To understand this better, we made some changes to Rails application files and understood why the error arises.
 
-### 1. Remove def index from products_controller.rb
+## 1. Remove def index from products_controller.rb
 
 - `NoMethodError in Cafes#index`
 - `undefined method 'each' for nil`
@@ -546,7 +546,7 @@ end
  Route reached controller, but controller had no action to execute
 
 
-### 2. Run products route from routes.rb and run Rails server
+## 2. Run products route from routes.rb and run Rails server
 
 - `Routing Error`
 - `No route matches [GET] "/products"`
@@ -555,7 +555,7 @@ end
 
  Without route, controller is useless.
 
-### 3. Remove the view file (.html.erb) of products from view folder
+## 3. Remove the view file (.html.erb) of products from view folder
 
 - `No view template for interactive request`
 - `ProductsController#index is missing a template for request formats: text/html`
@@ -589,7 +589,7 @@ Action content comes into play when we want to have a rich text content. It allo
   
 until the Rails version 6, there was no Action Content Component, in order to style textarea and field developers were using js plugins like tinyMCE in gem file.
 
-### To use Action Text aka Rich Text Editor
+## To use Action Text aka Rich Text Editor
 1. rails action_text:install
 2. rails db:migrate
   This creates four new tables  in the schema.rb and the database `action_text_rich_texts`, `active_storage_attachments`, `active_storage_blobs`, `active_storage_variant_records` and two files action_tet and action_storage files in migrate folder.
@@ -599,29 +599,29 @@ until the Rails version 6, there was no Action Content Component, in order to st
     `+import "@rails/actiontext"`  
   Text Editor called `trix` is created.
 
-### Active Storage
+## Active Storage
 1. It is used for uploading files and storing images.
 2. While installing action_text it also installs action_storage along with it.
 3. Until rails version 6, developers were using paperclip, carrier wave for uploading files and storing images.
 
-### Rails commands
+## Rails commands
 1. rails routes - list all routes
 2. rails routes | grep product_path
 
-### Generating Migration 
+## Generating Migration 
 Everything we do in the table using sql can be done through migrate/schema.rb.
 1. `rails generate migration AddColumnPhoneToCustomer phone_number:integer`
     1. Adding a new column to the customer table product, `AddColumnPhoneToCustomer` is the migration name and `phone_number:integer` are its column name and datatype respectively. 
 2.  Every changes we do the db through console has to be saved through the command `rails db:migrate`. It will through error if we run the server before this command.
 
-### Strong Parameters and Using inspect in each controller methods
+## Strong Parameters and Using inspect in each controller methods
  1. Rails application dont trust forms. To make the form data secured strong parameters are used.
 It allows us to retain data that we specify.
   `params.require(:customer).permit(:name, :email, :profile)`
  In the specified table name customers, only retrieving data that we permitted(name, email, profile).
  2. To view this visually, paste this `raise inspect:customer_params` in update or create method of customer_controller.rb.
     
-### comparing schema, before and after installing action_text.
+## comparing schema, before and after installing action_text.
 1. rails action_text:install
    rails db:migrate
 
@@ -632,7 +632,7 @@ It allows us to retain data that we specify.
   3. active_storage_attachments - Connects uploaded files to models.
   4. active_storage_variant_records - Stores processed versions of files.
 
-### & Intersection operator in array 
+## & Intersection operator in array 
 1. Intersection Operator removes the duplicates and keeps the order from the first array.
 ```ruby arr1 = [1, 2, 3, 4, 5]
 arr2 = [4, 5, 6, 7, 8]
