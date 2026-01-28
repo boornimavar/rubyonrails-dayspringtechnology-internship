@@ -12,6 +12,7 @@ class CustomersController < ApplicationController
 
   # GET /customers/1 or /customers/1.json
   def show
+    # raise params.inspect => to se all params passed in the url
   end
 
   # GET /customers/new
@@ -34,6 +35,7 @@ end
 
   # POST /customers or /customers.json
   def create
+    # raise customer_params.inspect  
     @customer = Customer.new(customer_params)
 
     respond_to do |format|
@@ -47,11 +49,10 @@ end
     end
   end
 
-  
-
-
   # PATCH/PUT /customers/1 or /customers/1.json
   def update
+    # raise params.inspect
+    # raise customer_params.inspect
     respond_to do |format|
       if @customer.update(customer_params)
         format.html { redirect_to @customer, notice: "Customer was successfully updated.", status: :see_other }
@@ -81,6 +82,9 @@ end
 
     # Only allow a list of trusted parameters through.
     def customer_params
-      params.expect(customer: [ :name, :email ])
-    end
+    params.require(:customer).permit(:name, :email, :profile)
+  end
+
 end
+
+#search customer_params see how many counters are there in params hash. strong params

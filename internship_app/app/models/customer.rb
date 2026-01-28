@@ -1,5 +1,6 @@
 class Customer < ApplicationRecord
-  
+  #day 13
+  has_rich_text :profile #kinda a styling to action text table in db schema
   # # Day 10
   # scope :unique_email, -> {where(email: "san@gmail.com").pluck( :email)} #model name and table name are defaultly fixed by rails without us giving any aias name.
   # scope :whitelisted_products,  -> { where("id IN (?)", [1, 2, 3]) }

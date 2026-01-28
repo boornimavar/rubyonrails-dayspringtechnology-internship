@@ -480,3 +480,64 @@ To safely migrate and if it is associated to another table, it might throw error
 
 - While generating controller `rails generate controller controller_name`, view is also generated along with that. Controller and View are action pack, they come in pair.
 
+## To do
+Generating a  controller and see the created files  
+create a new welco me.rb in mailers folder of layouts  
+
+# Day 13 -> Exploring and Understanding te Action Text Component
+## Action Text
+Action content comes into play when we want to have a rich text content. It allows us to format texts the way we need (bold, italics, colors and hyperlinks etc..)
+  
+until the Rails version 6, there was no Action Content Component, in order to style textarea and field developers were using js plugins like tinyMCE in gem file.
+
+## To use Action Text aka Rich Text Editor
+1. rails action_text:install
+2. rails db:migrate
+  This creates four new tables  in the schema.rb and the database `action_text_rich_texts`, `active_storage_attachments`, `active_storage_blobs`, `active_storage_variant_records` and two files action_tet and action_storage files in migrate folder.
+3. git diff internship_app/app/javascr
+    ipt/application.js 
+    `+import "trix"`
+    `+import "@rails/actiontext"`  
+  Text Editor called `trix` is created.
+
+## Active Storage
+1. It is used for uploading files and storing images.
+2. While installing action_text it also installs action_storage along with it.
+3. Until rails version 6, developers were using paperclip, carrier wave for uploading files and storing images.
+
+rails routes - list all routes
+rails routes | grep product_path
+
+# Generating Migration 
+Everything we do in the table using sql can be done through migrate/schema.rb.
+1. `rails generate migration AddColumnPhoneToCustomer phone_number:integer`
+    1. Adding a new column to the customer table product, `AddColumnPhoneToCustomer` is the migration name and `phone_number:integer` are its column name and datatype respectively. 
+2.  Every changes we do the db through console has to be saved through the command `rails db:migrate`. It will through error if we run the server before this command.
+
+## Strong Parameters and Using inspect in each controller methods
+ 1. Rails application dont trust forms. To make the form data secured strong parameters are used.
+It allows us to retain data that we specify.
+  `params.require(:customer).permit(:name, :email, :profile)`
+ In the specified table name customers, only retrieving data that we permitted(name, email, profile).
+ 2. To view this visually, paste this `raise inspect:customer_params` in update or create method of customer_controller.rb.
+    
+## comparing schema, before and after installing action_text.
+1. rails action_text:install
+   rails db:migrate
+
+2. After installing action_text to the rails application, there are four new tables being created to the schema.rb and db.
+
+  1. action_text_rich_texts - Stores the rich text.
+  2. active_storage_blobs - Stores metadata about uploaded files.
+  3. active_storage_attachments - Connects uploaded files to models.
+  4. active_storage_variant_records - Stores processed versions of files.
+
+# & Intersection operator in array 
+1. Intersection Operator removes the duplicates and keeps the order from the first array.
+```ruby arr1 = [1, 2, 3, 4, 5]
+arr2 = [4, 5, 6, 7, 8]
+result = arr1 & arr2
+puts result.inspect```
+
+  
+

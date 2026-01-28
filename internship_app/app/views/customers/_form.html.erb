@@ -12,6 +12,11 @@
       <%= f.label :email, class: "form-label" %>
       <%= f.email_field :email, class: "form-input", required: true %>
     </div>
+    
+    <div>
+      <%= f.label :profile, class: "form-label" %>
+      <%= f.rich_text_area :profile, class: "form-input" %>
+    </div>
 
     <div class="form-actions">
       <%= f.submit "Save", class: "btn btn-primary" %>
