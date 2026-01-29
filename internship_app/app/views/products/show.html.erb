@@ -2,9 +2,23 @@
 
 <%= render @product %>
 
-<div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
+<% if @product.items.attached? %>
+  <div class="product-images">
+    <% @product.items.each do |item| %>
+      <%= image_tag item, alt: "Product Image", size:"100x100" %>
+    <% end %>
+  </div>
+<% end %>
 
-  <%= button_to "Destroy this product", @product, method: :delete %>
+<% if @product.invoice.attached? %>
+  <div class="product-invoice">
+    <h3>Invoice:</h3>
+    <%= tag.embed src: url_for(@product.invoice), type: "application/pdf", width: "600", height: "400" %>
+  </div>
+<% end %>
+
+<div>
+  <%= link_to "Edit", edit_product_path(@product) %> |
+  <%= link_to "Back", products_path %>
+  <%= button_to "Delete", @product, method: :delete %>
 </div>

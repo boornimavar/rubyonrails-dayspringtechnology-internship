@@ -616,9 +616,9 @@ Everything we do in the table using sql can be done through migrate/schema.rb.
 
 ## Strong Parameters and Using inspect in each controller methods
  1. Rails application dont trust forms. To make the form data secured strong parameters are used.
-It allows us to retain data that we specify.
+   It allows us to retain data that we specify.
   `params.require(:customer).permit(:name, :email, :profile)`
- In the specified table name customers, only retrieving data that we permitted(name, email, profile).
+   In the specified table name customers, only retrieving data that we permitted(name, email, profile).
  2. To view this visually, paste this `raise inspect:customer_params` in update or create method of customer_controller.rb.
     
 ## comparing schema, before and after installing action_text.
@@ -634,10 +634,72 @@ It allows us to retain data that we specify.
 
 ## & Intersection operator in array 
 1. Intersection Operator removes the duplicates and keeps the order from the first array.
-```ruby arr1 = [1, 2, 3, 4, 5]
+<!-- ```ruby arr1 = [1, 2, 3, 4, 5]
 arr2 = [4, 5, 6, 7, 8]
-result = arr1 & arr2
-puts result.inspect```
+result = arr1 & arr2 => [1, 2]
+puts result``` -->
 
-  
+
+# Day 14 → Active Storage
+
+When we install Active Storage in a Rails app using, `rails active_storage:install`. Rails creates migration files for us. After running `rails db:migrate`,three tables get created automatically:
+
+- active_storage_blobs
+- active_storage_attachments
+- active_storage_variant_records
+
+These tables do  not store the actual files.  
+They only store file info and references.  
+The real files are stored somewhere else (disk or cloud).
+
+## storage.yml
+This file defines **where files can be stored**.
+Example (default local storage):
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+This means files are saved inside the `storage/` folder of the project.
+We can also configure cloud storage here like AWS S3, Google Cloud etc...
+
+## environments/development.rb
+Here we tell Rails **which storage from storage.yml to use**.
+`config.active_storage.service = :local` or `config.active_storage.service = :amazon`
+So Rails reads storage.yml, finds `local`, and stores files there.
+
+## Order in Models
+A clean way to arrange things inside a model:
+
+- scope
+- validations
+- associations
+- custom methods
+
+This makes the model easy to read and understand.
+
+## Form Helpers
+Rails form helpers are dynamic and reusable.
+We don’t manually write repetitive HTML for forms.
+Using helpers like `form_with`, `f.text_field`, `f.select`, etc.
+makes the form cleaner and connected directly to the model.
+
+## Variants (Image Processing)
+When using images with Active Storage, we can resize them using variants.
+This requires the `image_processing` gem.
+
+Example:
+<%= image_tag product.image.variant(resize_to_limit: [300, 300]) %>
+Rails processes the image before displaying it.
+
+---
+
+## Validation in Active Storage
+
+We can apply validations directly to attached files.
+For example, restricting file type and size:
+
+```ruby
+validates :profile_photo,
+  attached: true,
+  content_type: ['image/png', 'image/jpeg'],
+  size: { less_than: 2.megabytes, message: 'is too large' }
 

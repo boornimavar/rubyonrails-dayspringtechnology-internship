@@ -1,4 +1,10 @@
 class Customer < ApplicationRecord
+
+  #day 14
+  #single avatar attachment
+  has_one_attached :avatar
+  # if it is not active text or storage table, db:migrate is not needed.
+  #whitelisting is not needed for active storage as rails handles it internally.
   #day 13
   has_rich_text :profile #kinda a styling to action text table in db schema
   # # Day 10

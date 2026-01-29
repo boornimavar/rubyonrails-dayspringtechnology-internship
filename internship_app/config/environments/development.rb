@@ -28,8 +28,10 @@ Rails.application.configure do
   # Change to :null_store to avoid any caching.
   config.cache_store = :memory_store
 
+  #Day 14 - Active Storage configuration
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
+  # this configuaration comes from storage.yml file where we can configure cloud storage services too.
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

@@ -2,11 +2,15 @@
 
 <%= render @customer %>
 
-
-
-<div>
-  <%= link_to "Edit this customer", edit_customer_path(@customer) %> |
-  <%= link_to "Back to customers", customers_path %>
-
-  <%= button_to "Destroy this customer", @customer, method: :delete %>
+<div class="detail-card">
+  <p class="notice"><%= notice %></p>
+  <% if @customer.avatar.attached? %>
+     <%= image_tag @customer.avatar, alt: "Profile Picture" size:"100x100" %>
+  <% end %>
+  <div class="actions">
+    <%= link_to "Edit", edit_customer_path(@customer), class: "btn edit" %>
+    <%= link_to "Back", customers_path, class: "btn back" %>
+    <%= button_to "Delete", @customer, method: :delete, class: "btn delete" %>
+  </div>
 </div>
+

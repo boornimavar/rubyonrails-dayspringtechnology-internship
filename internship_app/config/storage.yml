@@ -5,6 +5,7 @@ test:
 local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
+  #we can extend this to use cloud storage services like AWS S3, Google Cloud Storage, Microsoft Azure Storage, etc.
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:

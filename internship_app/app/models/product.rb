@@ -1,4 +1,12 @@
 class Product < ApplicationRecord
+  #Day 14
+  # has_one_attached :items
+  has_many_attached :items
+  has_one_attached :invoice
+
+  #Day 13
+  has_rich_text :description
+
   # Day 10 scope
   scope :out_of_stock, -> { where(stock: 0) }
 
@@ -30,10 +38,10 @@ class Product < ApplicationRecord
   validates :description, length: { maximum: 500 }
 
   # using regex whether the product name is alphanumeric a-z,0-9
-  validates :name,
-            presence: true,
-            format: { with: /\A[a-z0-9]+\z/i,
-                      message: "only numbers and alphabets are applicable" }
+  # validates :name,
+  #           presence: true,
+  #           format: { with: /\A[a-z0-9]+\z/i,
+  #                     message: "only numbers and alphabets are applicable" }
 
   # custom validation for price and stock if the status is active
   validate :check_status

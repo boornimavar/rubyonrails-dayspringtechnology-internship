@@ -22,6 +22,13 @@
             <span class="status <%= customer.is_active ? 'active' : 'inactive' %>">
               <%= customer.is_active ? "Active" : "Inactive" %>
             </span>
+            <span class="avatar">
+              <% if customer.avatar.attached? %>
+                <%= image_tag customer.avatar, alt: "Avatar", size:"100x100" %>
+              <% else %>
+                <p>No avatar</p>
+              <% end %>
+            </span>
           </div>
 
           <p class="customer-email"><%= customer.email %></p>

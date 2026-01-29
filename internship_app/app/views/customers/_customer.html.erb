@@ -12,7 +12,12 @@
   <div>
     <strong>Profile:</strong>
     <%= customer&.profile || "-" %>
-
   </div>
-
+  <div>
+    <strong>Avatar:</strong>
+    <% if customer.avatar.attached? %>
+      <%= image_tag customer.avatar.variant(resize_to_limit: [150, 150]) %>
+    <% else %>
+      <p>No avatar uploaded.</p>
+    <% end %>
 </div>
