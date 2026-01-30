@@ -1,7 +1,9 @@
 require_relative "boot"
 
-require "rails/all"
 
+require "rails/all" #important line, server wont run wo it
+# require ActionMailer 
+require "action_mailer/railtie" #require loads only once, railtie 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)

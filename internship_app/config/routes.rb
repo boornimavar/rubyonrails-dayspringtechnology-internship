@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
   resources :products do
   
   # resources :products, except: [:show] do

@@ -1,16 +1,19 @@
-<p style="color: green"><%= notice %></p>
+<div class="page-wrapper">
 
-<%= render @customer %>
-
-<div class="detail-card">
-  <p class="notice"><%= notice %></p>
-  <% if @customer.avatar.attached? %>
-     <%= image_tag @customer.avatar, alt: "Profile Picture" size:"100x100" %>
+  <% if notice.present? %>
+    <p class="notice"><%= notice %></p>
   <% end %>
-  <div class="actions">
-    <%= link_to "Edit", edit_customer_path(@customer), class: "btn edit" %>
-    <%= link_to "Back", customers_path, class: "btn back" %>
-    <%= button_to "Delete", @customer, method: :delete, class: "btn delete" %>
-  </div>
-</div>
 
+  <div class="detail-card">
+
+    <%= render @customer %>
+
+    <div class="actions">
+      <%= link_to "Edit", edit_customer_path(@customer), class: "btn edit" %>
+      <%= link_to "Back", customers_path, class: "btn back" %>
+      <%= button_to "Delete", @customer, method: :delete, class: "btn delete" %>
+    </div>
+
+  </div>
+
+</div>

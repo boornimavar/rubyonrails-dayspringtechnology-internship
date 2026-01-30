@@ -1,23 +1,15 @@
-<div id="<%= dom_id customer %>">
-  <div>
-    <strong>Name:</strong>
-    <%= customer.name %>
-  </div>
+<div class="customer-info">
+  <% if customer.avatar.attached? %>
+    <%= image_tag customer.avatar, size:"100x100" %>
+  <% else %>
+    <p>No avatar uploaded.</p>
+  <% end %>
+  <p><strong></strong> <%= customer.name %></p>
 
-  <div>
-    <strong>Email:</strong>
-    <%= customer.email %>
-  </div>
+  <p><strong></strong> <%= customer.email %></p>
 
-  <div>
-    <strong>Profile:</strong>
-    <%= customer&.profile || "-" %>
-  </div>
-  <div>
-    <strong>Avatar:</strong>
-    <% if customer.avatar.attached? %>
-      <%= image_tag customer.avatar.variant(resize_to_limit: [150, 150]) %>
-    <% else %>
-      <p>No avatar uploaded.</p>
-    <% end %>
+  <p><strong></strong> <%= customer&.profile || "-" %></p>
+
+  <p><strong></strong></p>
+  
 </div>

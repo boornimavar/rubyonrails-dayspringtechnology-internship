@@ -22,3 +22,6 @@ inbuilt methods
 class
 object_id
 
+<span class="status <%= customer.is_active ? 'active' : 'inactive' %>">
+              <%= customer.is_active ? "Active" : "Inactive" %>
+            </span>

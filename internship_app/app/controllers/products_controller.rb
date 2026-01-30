@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to @product, notice: "Product was successfully created."
+        ProductMailer.with(product:@product).delivery_email.deliver
     else
       render :new, status: :unprocessable_entity
     end

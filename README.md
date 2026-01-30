@@ -697,9 +697,32 @@ Rails processes the image before displaying it.
 We can apply validations directly to attached files.
 For example, restricting file type and size:
 
-```ruby
+<!-- ```ruby
 validates :profile_photo,
   attached: true,
   content_type: ['image/png', 'image/jpeg'],
-  size: { less_than: 2.megabytes, message: 'is too large' }
+  size: { less_than: 2.megabytes, message: 'is too large' } -->
 
+# Day 15 -> Action Mailer 
+
+# Flow
+Mailer class -> view file(visualize)
+
+Rails uses REST api by default, it can all forms of req res body.
+
+# how emails are handled in rails application.
+SMTP
+POP
+IMAP
+
+any component introduced after ver 1 of rails are new, you have to manually install it.
+in older versions gem configuration is used.
+
+# Generating Mailer
+`rails generate mailer CustomerMailer`
+
+# gen migration to add new col email to product
+# gen a mailer class for product
+# define method 
+# relevant html.erb
+# product_controller

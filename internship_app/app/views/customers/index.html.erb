@@ -19,9 +19,7 @@
           <div class="card-header">
             <h3 class="customer-name"><%= customer.name %></h3>
 
-            <span class="status <%= customer.is_active ? 'active' : 'inactive' %>">
-              <%= customer.is_active ? "Active" : "Inactive" %>
-            </span>
+            
             <span class="avatar">
               <% if customer.avatar.attached? %>
                 <%= image_tag customer.avatar, alt: "Avatar", size:"100x100" %>

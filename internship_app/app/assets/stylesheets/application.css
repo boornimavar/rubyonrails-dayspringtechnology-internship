@@ -406,46 +406,95 @@ body {
   letter-spacing: 0.03em;
 }
 
-/* Form Labels & Secondary Text
-.customer-email,
-.detail-label,
-.form-label {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  opacity: 0.85;
+
+
+.customer-info, .page-wrapper, .product-wrapper{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
 }
 
-.card {
-  background: #ffffff;
-  padding: 20px;
-  margin: 25px auto;
-  width: 70%;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+.product-wrapper{
+  padding:20px;
+  width:100%;
+  gap:20px;
+  line-height:2.6;
 }
 
-.notice {
+.actions{
+  display:flex;
+  gap:10px;
+}
+
+.page-wrapper{
+  padding:20px;
+  width:100%;
+}
+
+.product-wrapper {
+  max-width: 900px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+.notice-text {
   color: green;
-  font-weight: bold;
   margin-bottom: 15px;
 }
 
-.actions {
-  margin-top: 15px;
+.product-render {
+  margin-bottom: 25px;
+}
+
+.product-images-section {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.product-image {
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.product-invoice-section {
+  margin-bottom: 25px;
+}
+
+.invoice-heading {
+  margin-bottom: 10px;
+}
+
+.invoice-embed {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.product-actions {
+  margin-top: 20px;
 }
 
 .btn {
-  padding: 8px 14px;
-  margin-right: 8px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 5px;
   text-decoration: none;
-  color: white;
-  font-size: 14px;
+  border: none;
+  cursor: pointer;
 }
 
-.edit { background-color: #3498db; }
-.back { background-color: #7f8c8d; }
-.delete {
-  background-color: #e74c3c;
-  border: none;
-} */
+.edit-btn {
+  background-color: #2563eb;
+  color: white;
+}
+
+.back-btn {
+  background-color: #6b7280;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #dc2626;
+  color: white;
+}
+
