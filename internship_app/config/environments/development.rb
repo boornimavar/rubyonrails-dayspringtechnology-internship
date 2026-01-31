@@ -47,7 +47,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   # delivery_method = :letter_opener
   config.action_mailer.delivery_method = :letter_opener #using a developer tool instead of smtp cuz we wanna visuaize it ig and smtp involves provviding pw and all.
-
+  config.action_mailer.delivery_method = LetterOpener::DeliveryMethod
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

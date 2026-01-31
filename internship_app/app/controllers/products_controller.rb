@@ -26,14 +26,17 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
-    @product = Product.new(product_params)
+  @product = Product.new(product_params)
+  if @product.save
+  email = ProductMailer.with(product: @product).delivery_email.deliver_now
+  Launchy.open(email.body.raw_source)
+  redirect_to @product, notice: "Product was successfully created."
+else
+  render :new, status: :unprocessable_entity
+end
 
-    if @product.save
-        ProductMailer.with(product:@product).delivery_email.deliver
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
+end
+
 
   # PATCH/PUT /products/1
   def update
@@ -57,7 +60,7 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :invoice, :description, :price, :stock, items:[])
+    params.require(:product).permit(:name, :invoice, :description, :price, :stock, :product_email, items:[])
   end
 
 end
