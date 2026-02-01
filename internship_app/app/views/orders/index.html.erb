@@ -1,0 +1,9 @@
+<h1>All Orders</h1>
+
+    <%= link_to "New Order", new_order_path %>
+
+    <% @orders.each do |order| %>
+      <p>
+        <%= link_to order.details, order %>
+      </p>
+    <% end %>

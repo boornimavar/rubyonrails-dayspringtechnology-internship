@@ -27,14 +27,18 @@ class ProductsController < ApplicationController
   # POST /products
   def create
   @product = Product.new(product_params)
-  if @product.save
-  email = ProductMailer.with(product: @product).delivery_email.deliver_now
-  Launchy.open(email.body.raw_source)
-  redirect_to @product, notice: "Product was successfully created."
-else
-  render :new, status: :unprocessable_entity
-end
+  respond_to do |format|
+      if @product.save # when you trigger a email, it has to be set after saving obj (.save)
+        ProductMailer.with(product:@product).delivery_email.deliver_now
 
+
+        format.html { redirect_to @product, notice: "successfully created." }
+        format.json { render :show, status: :created, location: @product }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
 end
 
 

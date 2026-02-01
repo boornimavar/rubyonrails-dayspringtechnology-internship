@@ -1,7 +1,12 @@
 class ProductMailer < ApplicationMailer
     def delivery_email
-        @product = params[:product]
-        mail(to:@product.product_email, subject:"Welcome, we are happy to have you!")
-    end
+  @product = params[:product]
+
+  mail(
+    to: "test@example.com",
+    subject: "TEST"
+  )
+end
+
 end
 
