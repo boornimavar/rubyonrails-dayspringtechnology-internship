@@ -703,26 +703,144 @@ validates :profile_photo,
   content_type: ['image/png', 'image/jpeg'],
   size: { less_than: 2.megabytes, message: 'is too large' } -->
 
-# Day 15 -> Action Mailer 
+# Day 15 → Rails Mailer with Letter Opener 
 
-# Flow
+Today I implemented email sending in Rails using a Mailer and visualized it using Letter Opener.
+
+The goal was:
+
+When a Product is created → an email should be sent to the `product_email` stored in the table → and it should open in the browser using Letter Opener.
+
+---
+
+## Installing Letter Opener
+
+Gemfile (development only):
+
+    group :development do
+      gem "letter_opener"
+    end
+
+Run:
+
+    bundle install
+
+---
+
+## Configuring development.rb
+
+Inside `config/environments/development.rb`:
+
+    config.action_mailer.delivery_method = :letter_opener
+    config.action_mailer.perform_deliveries = true
+
+This tells Rails to open emails in the browser instead of sending through SMTP.
+
+Restart the server after this.
+
+---
+
+## Generating the Mailer (Correct way)
+
+    rails generate mailer ProductMailer delivery_email
+
+This creates:
+
+- app/mailers/product_mailer.rb
+- app/views/product_mailer/delivery_email.html.erb
+
+---
+
+## Writing the Mailer
+
+File: `app/mailers/product_mailer.rb`
+
+    class ProductMailer < ApplicationMailer
+      def delivery_email
+        @product = params[:product]
+
+        mail(
+          to: @product.product_email,
+          subject: "Product Created Successfully"
+        )
+      end
+    end
+
+---
+
+## Writing the Email View
+
+File: `app/views/product_mailer/delivery_email.html.erb`
+
+    <h1>Hello <%= @product.product_name %>!</h1>
+
+    <p>
+      Your product has been created successfully.
+    </p>
+
+    <p>
+      Email sent to: <%= @product.product_email %>
+    </p>
+
+---
+
+## Triggering Mailer in Controller (after save)
+
+Inside `create` action in `products_controller.rb`:
+
+    if @product.save
+      ProductMailer.with(product: @product).delivery_email.deliver_now
+    end
+
+Important: use `deliver_now`, not `deliver`.
+
+---
+
+## The Major Bug I Faced (Strong Params)
+
+Even though the column `product_email` existed and the form had the field,
+Rails was not saving it.
+
+Because it was missing in strong params.
+
+Fix in `products_controller.rb`:
+
+    def product_params
+      params.require(:product).permit(:product_name, :product_email)
+    end
+
+Without this, `@product.product_email` becomes nil,
+and the mailer fails silently.
+
+---
+
+## Debug Trick That Helped
+
+I temporarily hardcoded the email inside the mailer:
+
+    mail(to: "test@example.com", subject: "TEST")
+
+If this opened Letter Opener → it proved the issue was with `product_email` being nil.
+
+---
+
+## Final Working Flow
+
+1. Form saves `product_email`
+2. Strong params allow it
+3. Product saves correctly
+4. Mailer receives correct email
+5. `deliver_now` sends immediately
+6. Letter Opener opens the browser
+
+## Flow
 Mailer class -> view file(visualize)
 
 Rails uses REST api by default, it can all forms of req res body.
 
-# how emails are handled in rails application.
+## Emails are handled in rails application through protocols.
 SMTP
 POP
 IMAP
 
-any component introduced after ver 1 of rails are new, you have to manually install it.
-in older versions gem configuration is used.
-
-# Generating Mailer
-`rails generate mailer CustomerMailer`
-
-# gen migration to add new col email to product
-# gen a mailer class for product
-# define method 
-# relevant html.erb
-# product_controller
+any component introduced after ver 1 of rails are new, you have to manually install it. In older versions gem configuration is used.
