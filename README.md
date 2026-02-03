@@ -844,3 +844,68 @@ POP
 IMAP
 
 any component introduced after ver 1 of rails are new, you have to manually install it. In older versions gem configuration is used.
+ 
+## Day 18 → Action Mailbox
+
+## What is Action Mailbox?
+
+Action Mailbox routes incoming emails to controller-like mailboxes for processing inside your Rails application.
+
+> Action Mailbox is for receiving emails  
+> Action Mailer is for sending emails
+
+---
+
+## Setting Up & Configuring Action Mailbox
+
+### 1. Install Action Mailbox
+```bash
+rails action_mailbox:install
+```
+
+### 2. Run Database Migrations
+```bash
+rails db:migrate
+```
+
+### 3. Environment Configuration
+No major configuration is required inside `environment.rb` for basic setup.
+
+---
+
+## How the Flow Works
+
+Incoming emails do not directly hit your Rails app.
+
+They pass through:
+
+Proxy Routing Server → Ingress Server → Your Rails App
+
+### Ingress Server
+The ingress server is responsible for receiving emails and forwarding them to your application.
+
+Rails supports multiple ingress options:
+- Postmark
+- SendGrid
+- Mailgun
+- Relay (default)
+
+---
+
+## Key Concept
+
+| Feature | Purpose |
+|--------|---------|
+| Action Mailbox | Receives and processes emails |
+| Action Mailer | Sends emails |
+
+You can use any email service for sending mails, but for receiving mails, you must configure an ingress service.
+
+---
+
+## Summary
+
+- Install Action Mailbox
+- Run migrations
+- Configure ingress (Postmark / SendGrid / Mailgun / Relay)
+- Rails routes emails to mailboxes like controllers
