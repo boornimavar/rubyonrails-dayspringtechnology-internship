@@ -1020,3 +1020,291 @@ It converts `Product` from a class into a module.
 `::` is Ruby’s scope operator, not a database relationship.
 
 ---
+## Day 17 → Active Record Associations (Product ↔ Category)
+
+### Part 1 — ORM: Row becomes Object
+
+Open Rails console:
+
+```ruby
+p = Product.first
+p.class
+p.id
+p.name
+```
+
+Explanation:
+
+Rails fetched the first row from the `products` table and converted it into a Ruby object.  
+The table columns became object methods.  
+This is ORM — Object Relational Mapping.
+
+---
+
+### Part 2 — Create Category table with foreign key
+
+In terminal:
+
+```bash
+rails g model Category name product:references
+rails db:migrate
+```
+
+This creates a `categories` table with a `product_id` column.  
+`product_id` is a foreign key. At this point, it is just a number.
+
+---
+
+### Part 3 — Tell Rails about the relationship
+
+`app/models/product.rb`
+
+```ruby
+has_many :categories
+```
+
+`app/models/category.rb`
+
+```ruby
+belongs_to :product
+```
+
+Now Rails understands that `product_id` connects categories to products.
+
+---
+
+### Part 4 — Insert using an object
+
+Back to console:
+
+```ruby
+prod = Product.first
+Category.create(name: "Electronics", product: prod)
+```
+
+Rails cannot store objects in the database.  
+So it extracts the id from the object and stores it in `product_id`.
+
+Check:
+
+```ruby
+prod.id
+```
+
+That value is what went into `product_id`.
+
+---
+
+### Part 5 — Association querying
+
+```ruby
+prod.categories
+```
+
+Rails automatically fetches all categories where `product_id` equals this product’s id.
+
+Reverse:
+
+```ruby
+cat = Category.first
+cat.product
+```
+
+Rails uses `product_id` to fetch the related product.
+
+---
+
+### Part 6 — Inspect objects
+
+```ruby
+prod.categories.inspect
+cat.product.inspect
+```
+
+Active Record always shows objects, not raw table rows.
+
+---
+
+### Part 7 — The mistake with `::`
+
+If this command is run:
+
+```bash
+rails g model Product::Category name
+```
+
+Rails treats this as a namespace.  
+It converts `Product` from a class into a module.  
+`::` is Ruby’s scope operator, not a database relationship.
+
+---
+
+### Final Summary
+
+Active Record turns rows into objects, foreign keys into methods, and lets tables talk to each other using Ruby instead of SQL.
+
+## Day 18 → Active Support (Rails power-ups for Ruby)
+
+### What is Active Support?
+
+Active Support is a Rails library that **extends Ruby’s core classes** (Time, Date, String, Array, NilClass, etc.) with expressive, developer-friendly helpers.
+
+These methods are **not** pure Ruby. They come from Rails.
+
+---
+
+## 1) Time Helpers (human-readable time math)
+
+```ruby
+current_time = Time.zone.now
+
+current_time + 2.day
+current_time + 2.week
+current_time + 2.month
+current_time + 2.year
+
+1.hour.ago
+3.days.from_now
+```
+
+Helpers like `day`, `week`, `month`, `year`, `ago`, `from_now` come from Active Support.
+
+> Always prefer `Time.zone.now` over `Time.now` in Rails apps.
+
+---
+
+## 2) Date Helpers
+
+```ruby
+Date.today
+Date.new(2026, 5, 3)
+
+Date.new(2026, 5, 3).change(month: 11)
+Date.new(2026, 5, 3).beginning_of_month
+Date.new(2026, 5, 3).end_of_month
+Date.today.next_day
+Date.today.prev_day
+```
+
+Methods like `change`, `beginning_of_month`, `end_of_month` are Rails additions.
+
+---
+
+## 3) String Extensions (very important in Rails apps)
+
+```ruby
+"shirt number 23".parameterize   # "shirt-number-23"
+" hey there ".squish             # "hey there"
+"hey there".camelize             # "HeyThere"
+"hey there".titlecase            # "Hey There"
+"users".singularize              # "user"
+"user".pluralize                 # "users"
+"admin_user".humanize            # "Admin user"
+```
+
+Used for:
+- URLs (`parameterize`)
+- Formatting text
+- Model/table naming conventions
+
+---
+
+## 4) Presence & Blank Checks (Rails smart nil handling)
+
+```ruby
+a = []
+a.nil?      # false
+a.empty?    # true
+a.blank?    # true
+a.present?  # false
+
+b = " "
+b.blank?    # true
+b.present?  # false
+
+nil.blank?  # true
+```
+
+`blank?` and `present?` are smarter than Ruby’s `nil?` and `empty?`.
+
+> Rails prefers `blank?` / `present?` in real apps.
+
+---
+
+## 5) Array & Hash helpers
+
+```ruby
+[1,2,3].second
+[1,2,3].third
+[1,2,3].last
+
+{a: 1, b: 2}.with_indifferent_access
+```
+
+Rails adds positional helpers and flexible hash access.
+
+---
+
+## 6) I18n (Internationalization)
+
+```ruby
+I18n.t(:hello)
+```
+
+Used to fetch translations from locale files.
+
+> Rails apps avoid hardcoded text using I18n.
+
+---
+
+## 7) Active Support Concerns
+
+Concerns group reusable code.
+
+- Repeated logic in **models/controllers** → Concerns
+- Repeated logic in **views** → Helpers
+
+They keep code modular and clean.
+
+Example:
+
+```ruby
+# app/models/concerns/trackable.rb
+module Trackable
+  extend ActiveSupport::Concern
+
+  included do
+    before_create :set_tracking_code
+  end
+end
+```
+
+---
+
+## 8) Instrumentation API (Publish–Subscribe)
+
+Active Support provides an internal pub/sub system used by Rails to monitor events and performance.
+
+Used by Rails logging, caching, and request tracking.
+
+---
+
+## 9) Why this matters
+
+Active Support makes Ruby:
+- More readable
+- More expressive
+- More Rails-friendly
+- Less verbose for common tasks
+
+---
+
+## Key Takeaway
+
+Active Support silently enhances Ruby with:
+- Time math
+- Date helpers
+- Powerful string transformations
+- Smart presence checks
+- Structural tools like Concerns
+- Translation system (I18n)
