@@ -6,13 +6,12 @@ class CustomersController < ApplicationController
     # list_of_customers = [1,2,3]
     # @customers = Customer.blacklisted_customers(list_of_customers)
     @customers = Customer.all
+    # @customers = Customer.find(76)
+
   end
-
-
 
   # GET /customers/1 or /customers/1.json
   def show
-    # raise params.inspect => to se all params passed in the url
   end
 
   # GET /customers/new

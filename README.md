@@ -902,10 +902,121 @@ Rails supports multiple ingress options:
 You can use any email service for sending mails, but for receiving mails, you must configure an ingress service.
 
 ---
+## Day 17 → Active Record Associations (Product ↔ Category)
 
-## Summary
+### Part 1 — ORM: Row becomes Object
 
-- Install Action Mailbox
-- Run migrations
-- Configure ingress (Postmark / SendGrid / Mailgun / Relay)
-- Rails routes emails to mailboxes like controllers
+Open Rails console:
+
+```ruby
+p = Product.first
+p.class
+p.id
+p.name
+```
+
+Explanation:
+
+Rails fetched the first row from the `products` table and converted it into a Ruby object.  
+The table columns became object methods.  
+This is ORM — Object Relational Mapping.
+
+---
+
+### Part 2 — Create Category table with foreign key
+
+In terminal:
+
+```bash
+rails g model Category name product:references
+rails db:migrate
+```
+
+This creates a `categories` table with a `product_id` column.  
+`product_id` is a foreign key. At this point, it is just a number.
+
+---
+
+### Part 3 — Tell Rails about the relationship
+
+`app/models/product.rb`
+
+```ruby
+has_many :categories
+```
+
+`app/models/category.rb`
+
+```ruby
+belongs_to :product
+```
+
+Now Rails understands that `product_id` connects categories to products.
+
+---
+
+### Part 4 — Insert using an object
+
+Back to console:
+
+```ruby
+prod = Product.first
+Category.create(name: "Electronics", product: prod)
+```
+
+Rails cannot store objects in the database.  
+So it extracts the id from the object and stores it in `product_id`.
+
+Check:
+
+```ruby
+prod.id
+```
+
+That value is what went into `product_id`.
+
+---
+
+### Part 5 — Association querying
+
+```ruby
+prod.categories
+```
+
+Rails automatically fetches all categories where `product_id` equals this product’s id.
+
+Reverse:
+
+```ruby
+cat = Category.first
+cat.product
+```
+
+Rails uses `product_id` to fetch the related product.
+
+---
+
+### Part 6 — Inspect objects
+
+```ruby
+prod.categories.inspect
+cat.product.inspect
+```
+
+Active Record always shows objects, not raw table rows.
+
+---
+
+### Part 7 — The mistake with `::`
+
+If this command is run:
+
+```bash
+rails g model Product::Category name
+```
+
+Rails treats this as a namespace.  
+It converts `Product` from a class into a module.  
+`::` is Ruby’s scope operator, not a database relationship.
+
+---

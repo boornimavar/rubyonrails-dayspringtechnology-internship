@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+
+  #Day16
+  has_many :categories
   #Day 14
   # has_one_attached :items
   has_many_attached :items
