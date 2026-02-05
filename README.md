@@ -1177,13 +1177,41 @@ Active Support makes Ruby:
 
 ---
 
-## Key Takeaway
+# Day 19 -> Associations & Rails Association and Sequel Association.
 
-Active Support silently enhances Ruby with:
-- Time math
-- Date helpers
-- Powerful string transformations
-- Smart presence checks
-- Structural tools like Concerns
-- Translation system (I18n)
- 
+## Association
+Association in simple terms is when we want to create reltionship between two existing tables.
+
+## 4 Types of Associations
+- one to one
+- one to many
+- many to one
+- many to many
+
+## 6 Ways of implementing association on tables
+- has one
+- has many
+- has one through
+- has many through
+- has many belongs to 
+
+## Understanding Associations
+wrapping my head around understanding associations was the hard part for me so far. I wanna get into this topic in detail. Associations are the game changer because what do you mean we can make relationship between tables and so on.
+
+## WHY
+I had so many `how` and `why` questions while doing association. Where does those `has_many` and `belongs_to` coming from and how these affects the way we get the desired outputs.
+
+## has_many and belongs_to
+Both are rails methods. Every model class in a rails application has this.
+
+```ruby
+has_many :orders
+```
+```ruby
+belongs_to :product
+```
+These lines are just calling rails method on the model class we are writting into.
+- `belongs _to: product` in order.rb -> tells the db that order table has a column, product_id.
+- `has_many :orders` in products.rb -> tells the db to go orders table and retrive rows where order_id equals with order's id `(product.orders)`. Without `belongs_to :product` the method `product.orders` won't exist and the code will fail and we won't be able to retrive.
+
+
