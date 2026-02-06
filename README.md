@@ -1177,41 +1177,162 @@ Active Support makes Ruby:
 
 ---
 
-# Day 19 -> Associations & Rails Association and Sequel Association.
+## Day 19 → Associations (Database Relationship vs Rails Association)
 
-## Association
-Association in simple terms is when we want to create reltionship between two existing tables.
+### What is an Association?
 
-## 4 Types of Associations
-- one to one
-- one to many
-- many to one
-- many to many
+Association means creating a relationship between two existing tables using a foreign key.
 
-## 6 Ways of implementing association on tables
-- has one
-- has many
-- has one through
-- has many through
-- has many belongs to 
+Example:
+- products table
+- orders table (has `product_id`)
 
-## Understanding Associations
-wrapping my head around understanding associations was the hard part for me so far. I wanna get into this topic in detail. Associations are the game changer because what do you mean we can make relationship between tables and so on.
+This foreign key connects the two tables.
 
-## WHY
-I had so many `how` and `why` questions while doing association. Where does those `has_many` and `belongs_to` coming from and how these affects the way we get the desired outputs.
+---
 
-## has_many and belongs_to
-Both are rails methods. Every model class in a rails application has this.
+## Database Relationship (no Rails)
+
+The database only understands numbers.
+
+
+```ruby
+Order.create(quantity: 2, product_id: 1)
+```
+
+This works even if you write nothing in models.
+
+Because the column `product_id` exists.
+
+This is **database-level association**.
+
+---
+
+## Rails Association (model-level help)
+
+Rails gives special methods to make this easier.
+
+These methods come from Active Record and are available in every model.
+
+```ruby
+# product.rb
+has_many :orders
+
+# order.rb
+belongs_to :product
+```
+
+These lines do not create columns.  
+They create **methods**.
+
+---
+
+## What `belongs_to` does
+
+```ruby
+belongs_to :product
+```
+
+Rails now allows:
+
+```ruby
+order.product
+```
+
+Rails reads `product_id` and fetches the product.
+
+Without this line → that method does not exist.
+
+---
+
+## What `has_many` does
 
 ```ruby
 has_many :orders
 ```
-```ruby
-belongs_to :product
-```
-These lines are just calling rails method on the model class we are writting into.
-- `belongs _to: product` in order.rb -> tells the db that order table has a column, product_id.
-- `has_many :orders` in products.rb -> tells the db to go orders table and retrive rows where order_id equals with order's id `(product.orders)`. Without `belongs_to :product` the method `product.orders` won't exist and the code will fail and we won't be able to retrive.
 
+Rails now allows:
+
+```ruby
+product.orders
+```
+
+Rails goes to the orders table and finds rows where `product_id` equals this product’s id.
+
+Without this line → that method does not exist.
+
+---
+
+## The Key Understanding
+
+| Without Rails association | With Rails association |
+|---|---|
+| Must pass `product_id` manually | Rails fills `product_id` for you |
+| Use `where(product_id: ...)` | Use `product.orders` |
+| No helper methods | Helper methods exist |
+
+---
+
+## Example of Rails Association
+
+```ruby
+Product.last.orders.create(quantity: 3)
+```
+
+You did not pass `product_id`. Rails inserted it automatically.
+
+---
+
+## Why commenting `has_many` causes error
+
+When you remove:
+
+```ruby
+has_many :orders
+```
+
+The method `product.orders` disappears.
+
+The database is fine. Rails method is gone.
+
+---
+
+## `null: false` vs `null: true`
+
+In migration:
+
+```ruby
+t.references :product, null: false
+```
+
+Means you must always pass `product_id`.
+
+If changed to:
+
+```ruby
+null: true
+```
+
+You can create orders without linking to product.
+
+This is a **database rule**, not Rails.
+
+---
+
+## Types of Relationships
+
+- One to One → `has_one` / `belongs_to`
+- One to Many → `has_many` / `belongs_to`
+- Many to Many → `has_many :through` or `has_and_belongs_to_many`
+
+---
+
+## Final Realization
+
+Association is two layers:
+
+1. Database layer → foreign key (`product_id`)
+2. Rails layer → helper methods (`has_many`, `belongs_to`)
+
+Rails association is a convenience over the database relationship.
 
